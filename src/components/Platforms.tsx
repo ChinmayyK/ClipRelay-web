@@ -44,12 +44,12 @@ export function Platforms() {
         <span className="label plat-header">ENVIRONMENTS</span>
         <h2 className="plat-header">Deployment Targets</h2>
         
-        <div className="plat-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '4rem', alignItems: 'flex-start' }}>
+        <div className="plat-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))', gap: '4rem', alignItems: 'flex-start' }}>
           <div className="plat-item">
             <p style={{ marginBottom: '2rem' }}>
               Native applications tailored for each operating system, sharing a unified, high-performance Rust core.
             </p>
-            <div style={{ overflowX: 'auto', border: '1px solid var(--border)', background: 'var(--bg-surface)' }}>
+            <div className="table-responsive" style={{ background: 'var(--bg-surface)' }}>
               <table>
                 <thead>
                   <tr>

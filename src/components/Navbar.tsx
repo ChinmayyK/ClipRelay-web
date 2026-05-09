@@ -13,13 +13,13 @@ export function Navbar() {
 
   return (
     <nav>
-      <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <img src="/logo.png" alt="" width={40} height={40} />
           <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: '1.5rem', color: 'var(--accent-alt)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>ClipRelay</span>
         </div>
         
-        <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+        <div className="nav-links">
           <a href="#philosophy" className="nav-link">SYS_REQ</a>
           <a href="#features" className="nav-link">ARCH</a>
           <a href="https://github.com/ChinmayyK/cliprelay" className="nav-link">SRC</a>

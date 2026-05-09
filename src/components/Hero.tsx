@@ -49,14 +49,14 @@ export function Hero() {
   return (
     <section ref={container} className="section" style={{ borderBottom: '1px dashed var(--border)', minHeight: 'calc(100vh - 85px)', display: 'flex', alignItems: 'center', perspective: '1000px' }}>
       <div className="container" style={{ width: '100%' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'center' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '4rem', alignItems: 'center' }}>
           <div className="hero-content">
             <span className="label">SYS_VERSION: 1.0.0-BETA</span>
             <h1 className="glitch" data-text="Continuity Infrastructure">Continuity<br/>Infrastructure</h1>
             <p style={{ marginBottom: '2rem', fontSize: '1.25rem' }}>
               ClipRelay transforms your local network into a private, encrypted mesh. Clipboard state, files, and activity move fluidly between your personal devices without ever leaving your network or touching the cloud.
             </p>
-            <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+            <div className="hero-buttons" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
               <a href="https://github.com/ChinmayyK/cliprelay" className="button-primary">INITIATE_SOURCE</a>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--fg-dim)', borderBottom: '1px dashed var(--fg-dim)' }}>&lt; 5MB BINARY</span>
             </div>
@@ -76,18 +76,7 @@ export function Hero() {
             </div>
             
             {/* Diagnostic Panel */}
-            <div style={{ 
-              position: 'absolute', 
-              bottom: '-2rem', 
-              right: '-2rem', 
-              background: 'var(--bg)', 
-              border: '1px solid var(--accent)', 
-              padding: '1rem', 
-              display: 'flex', 
-              gap: '2rem', 
-              boxShadow: '4px 4px 0 var(--accent)',
-              transform: 'translateZ(20px)'
-            }}>
+            <div className="diagnostic-panel">
               <div>
                 <span style={{ display: 'block', fontSize: '0.6rem', color: 'var(--accent-alt)', marginBottom: '0.25rem', fontFamily: 'var(--font-mono)', letterSpacing: '0.1em' }}>UPLINK</span>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>

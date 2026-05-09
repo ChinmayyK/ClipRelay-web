@@ -79,7 +79,7 @@ export function Comparisons() {
         <span className="label comp-header">MARKET_ANALYSIS</span>
         <h2 className="comp-header">Competitive Matrix</h2>
 
-        <div className="comp-table" style={{ overflowX: 'auto', border: '1px solid var(--border)', background: 'var(--bg-surface)' }}>
+        <div className="comp-table table-responsive" style={{ background: 'var(--bg-surface)' }}>
           <table style={{ minWidth: '900px' }}>
             <thead>
               <tr>

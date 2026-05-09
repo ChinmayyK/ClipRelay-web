@@ -56,7 +56,7 @@ export function Features() {
         <span className="label feat-header">CAPABILITIES</span>
         <h2 className="feat-header">System Competencies</h2>
 
-        <div className="schematic-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+        <div className="schematic-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '2rem' }}>
           {features.map((f, i) => (
             <div key={i} className="schematic-card">
               <span style={{ display: 'block', fontFamily: 'var(--font-mono)', color: 'var(--accent-alt)', marginBottom: '0.5rem' }}>MOD_{i + 1}</span>

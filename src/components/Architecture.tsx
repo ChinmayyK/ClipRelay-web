@@ -38,7 +38,7 @@ export function Architecture() {
         <span className="label arch-header">SCHEMATICS</span>
         <h2 className="arch-header" style={{ marginBottom: '4rem' }}>Internal Routing Logic</h2>
 
-        <div className="arch-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '3rem' }}>
+        <div className="arch-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))', gap: '3rem' }}>
           <div className="arch-item">
             <h3>I. High-Level Mesh</h3>
             <p style={{ marginTop: '1rem', marginBottom: '2rem' }}>
