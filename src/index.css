@@ -18,16 +18,13 @@
 }
 
 html.light {
-  /* Drafting Paper Light Theme */
   --bg: #F8FAFC;
   --bg-surface: #FFFFFF;
-  --border: #CBD5E1;
-  --grid-line: rgba(203, 213, 225, 0.4);
-  
   --fg: #0F172A;
-  --fg-dim: #64748B;
-  
-  --accent: #EA580C;
+  --fg-dim: #475569;
+  --border: #7DD3FC; /* Light blue border */
+  --grid-line: #E0F2FE; /* Distinct light blue grid lines */
+  --accent: #EA580C; /* Slightly darker orange for contrast on white */
   --accent-alt: #0284C7;
 }
 
