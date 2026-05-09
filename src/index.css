@@ -355,17 +355,36 @@ nav {
     padding: 0 1rem;
   }
   
+  /* Typography */
   h1 {
-    font-size: 2.2rem;
+    font-size: clamp(2rem, 8vw, 3.5rem);
     word-wrap: break-word;
+    letter-spacing: 0.02em;
   }
   
   h2 {
-    font-size: 1.5rem;
+    font-size: clamp(1.5rem, 6vw, 2rem);
   }
   
+  p {
+    font-size: 1rem;
+  }
+  
+  /* Layout Spacing */
   .section {
-    padding: 3rem 0;
+    padding: 3.5rem 0;
+  }
+  
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  /* Grid gaps reduction */
+  [style*="gap: 4rem"] {
+    gap: 2rem !important;
+  }
+  [style*="gap: 3rem"] {
+    gap: 1.5rem !important;
   }
   
   /* Tables wrapper for horizontal scroll */
@@ -375,6 +394,7 @@ nav {
     -webkit-overflow-scrolling: touch;
     border: 1px solid var(--border);
     margin-bottom: 2rem;
+    box-shadow: inset -10px 0 10px -10px rgba(0,0,0,0.1);
   }
   
   .table-responsive table {
@@ -382,27 +402,52 @@ nav {
     margin-bottom: 0;
   }
   
-  /* Schematic cards */
+  /* Schematic cards & Terminal */
   .schematic-card {
     padding: 1.25rem;
   }
   
-  .diagnostic-panel {
-    right: 0 !important;
-    bottom: -1rem !important;
-    left: 0 !important;
-    justify-content: center;
-    transform: none !important;
-    width: 100%;
+  .terminal {
+    padding: 1rem;
+    font-size: 0.75rem;
+    box-shadow: 4px 4px 0 var(--border);
   }
   
+  .hero-visual {
+    transform: none !important; /* Disable 3D on mobile for better fit */
+    margin-top: 1.5rem;
+  }
+  
+  .hero-content p {
+    font-size: clamp(1rem, 4.5vw, 1.25rem) !important;
+  }
+  
+  .diagnostic-panel {
+    position: relative !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    margin-top: 1rem;
+    justify-content: space-between;
+    transform: none !important;
+    width: 100%;
+    box-shadow: 4px 4px 0 var(--accent);
+  }
+  
+  /* Navbar */
   .nav-links {
-    display: none !important;
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 1rem !important;
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 0.5rem;
   }
   
   .hero-buttons {
     flex-direction: column;
     align-items: stretch !important;
+    gap: 1rem !important;
   }
   
   .hero-buttons .button-primary {
