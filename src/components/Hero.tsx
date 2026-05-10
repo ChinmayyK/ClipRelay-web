@@ -6,91 +6,99 @@ export function Hero() {
   const container = useRef(null);
 
   useGSAP(() => {
-    // Left content
-    gsap.from('.hero-content > *', {
+    // Reveal text
+    gsap.from('.hero-reveal', {
       opacity: 0,
-      x: -40,
-      duration: 1,
-      stagger: 0.15,
-      ease: 'back.out(1.2)'
-    });
-
-    // Terminal 3D pop-in
-    gsap.from('.hero-visual', {
-      opacity: 0,
-      scale: 0.9,
-      rotationY: -15,
-      rotationX: 10,
+      y: 40,
       duration: 1.2,
-      delay: 0.3,
-      ease: 'power3.out'
+      stagger: 0.15,
+      ease: 'power4.out',
+      delay: 0.2
     });
 
-    // Terminal lines
-    gsap.from('.t-line', {
-      opacity: 0,
-      x: -10,
-      duration: 0.1,
-      stagger: 0.4,
-      delay: 1.2
+    // Orbiting nodes animation
+    gsap.to('.orbit-node', {
+      rotation: 360,
+      transformOrigin: "center 200px",
+      duration: 20,
+      repeat: -1,
+      ease: 'linear'
+    });
+    
+    gsap.to('.orbit-node-reverse', {
+      rotation: -360,
+      transformOrigin: "center 140px",
+      duration: 15,
+      repeat: -1,
+      ease: 'linear'
     });
 
     // Blinking diagnostic lights
     gsap.to('.status-led', {
-      opacity: 0.2,
-      duration: 0.1,
+      opacity: 0.3,
+      duration: 0.8,
       repeat: -1,
       yoyo: true,
-      stagger: 0.2,
-      ease: 'steps(1)'
+      ease: 'power1.inOut'
     });
   }, { scope: container });
 
   return (
-    <section ref={container} className="section" style={{ borderBottom: '1px dashed var(--border)', minHeight: 'calc(100vh - 85px)', display: 'flex', alignItems: 'center', perspective: '1000px' }}>
-      <div className="container" style={{ width: '100%' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '4rem', alignItems: 'center' }}>
-          <div className="hero-content">
-            <span className="label">SYS_VERSION: 1.0.0-BETA</span>
-            <h1 className="glitch" data-text="Continuity Infrastructure">Continuity<br/>Infrastructure</h1>
-            <p style={{ marginBottom: '2rem', fontSize: '1.25rem' }}>
-              ClipRelay transforms your local network into a private, encrypted mesh. Clipboard state, files, and activity move fluidly between your personal devices without ever leaving your network or touching the cloud.
-            </p>
-            <div className="hero-buttons" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-              <a href="https://github.com/ChinmayyK/cliprelay" className="button-primary">INITIATE_SOURCE</a>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--fg-dim)', borderBottom: '1px dashed var(--fg-dim)' }}>&lt; 5MB BINARY</span>
-            </div>
-          </div>
+    <section ref={container} className="section" style={{ borderBottom: '1px dashed var(--border)', minHeight: 'calc(100vh - 85px)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', position: 'relative', overflow: 'hidden', padding: '0' }}>
+      
+      {/* Background Graphic */}
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '100vw', height: '100vw', maxWidth: '800px', maxHeight: '800px', pointerEvents: 'none', opacity: 0.1, zIndex: 0 }}>
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '100%', height: '100%', border: '1px solid var(--accent-alt)', borderRadius: '50%' }}></div>
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '70%', height: '70%', border: '1px dashed var(--accent)', borderRadius: '50%' }}></div>
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '40%', height: '40%', border: '1px solid var(--fg)', borderRadius: '50%' }}></div>
+        
+        {/* Orbiting Elements */}
+        <div className="orbit-node" style={{ position: 'absolute', top: 'calc(50% - 200px)', left: 'calc(50% - 6px)', width: '12px', height: '12px', background: 'var(--accent-alt)', borderRadius: '50%', boxShadow: '0 0 20px var(--accent-alt)' }}></div>
+        <div className="orbit-node-reverse" style={{ position: 'absolute', top: 'calc(50% - 140px)', left: 'calc(50% - 6px)', width: '12px', height: '12px', background: 'var(--accent)', borderRadius: '50%', boxShadow: '0 0 20px var(--accent)' }}></div>
+      </div>
 
-          <div className="hero-visual" style={{ position: 'relative', transformStyle: 'preserve-3d' }}>
-            <div className="terminal">
-              <div className="t-lines" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                <div className="t-line"><span style={{ color: 'var(--accent)' }}>&gt;</span> cliprelay daemon start</div>
-                <div className="t-line" style={{ color: 'var(--fg-dim)' }}>[SYS_INIT] Core engine online (Rust 1.80)</div>
-                <div className="t-line" style={{ color: 'var(--fg-dim)' }}>[NET_BIND] Listening on 0.0.0.0:8080</div>
-                <div className="t-line" style={{ color: 'var(--fg-dim)' }}>[MDNS_DISC] Found MacBook-Pro.local</div>
-                <div className="t-line" style={{ color: 'var(--fg-dim)' }}>[MDNS_DISC] Found Pixel-7.local</div>
-                <div className="t-line" style={{ color: 'var(--accent-alt)' }}>[SEC_HAND] X25519 Tunnel established</div>
-                <div className="t-line" style={{ color: 'var(--accent)' }}>[STATUS_OK] Mesh active. Awaiting propagation.<span className="cursor-blink"></span></div>
-              </div>
-            </div>
-            
-            {/* Diagnostic Panel */}
-            <div className="diagnostic-panel">
-              <div>
-                <span style={{ display: 'block', fontSize: '0.6rem', color: 'var(--accent-alt)', marginBottom: '0.25rem', fontFamily: 'var(--font-mono)', letterSpacing: '0.1em' }}>UPLINK</span>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <div className="status-led" style={{ width: '8px', height: '8px', background: 'var(--accent)', borderRadius: '50%' }}></div>
-                  <span style={{ fontSize: '0.85rem', fontFamily: 'var(--font-mono)' }}>SECURE</span>
-                </div>
-              </div>
-              <div>
-                <span style={{ display: 'block', fontSize: '0.6rem', color: 'var(--accent-alt)', marginBottom: '0.25rem', fontFamily: 'var(--font-mono)', letterSpacing: '0.1em' }}>PEERS</span>
-                <span style={{ fontSize: '0.85rem', fontFamily: 'var(--font-mono)' }}>03_ACTIVE</span>
-              </div>
-            </div>
-          </div>
+      <div className="container" style={{ position: 'relative', zIndex: 10, maxWidth: '900px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        
+        <div className="hero-reveal" style={{ display: 'inline-flex', alignItems: 'center', border: '1px solid rgba(56, 189, 248, 0.3)', padding: '0.35rem 1rem', borderRadius: '50px', marginBottom: '2rem', background: 'rgba(16, 29, 53, 0.8)', backdropFilter: 'blur(8px)' }}>
+          <span className="status-led" style={{ display: 'inline-block', width: '8px', height: '8px', background: 'var(--accent-alt)', borderRadius: '50%', marginRight: '10px', boxShadow: '0 0 10px var(--accent-alt)' }}></span>
+          <span style={{ color: 'var(--accent-alt)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.15em' }}>
+            LOCAL MESH NETWORK ACTIVE
+          </span>
         </div>
+
+        <h1 className="hero-reveal" style={{ 
+          fontSize: 'clamp(3.5rem, 10vw, 6.5rem)', 
+          color: 'var(--fg)', 
+          letterSpacing: '-0.03em', 
+          lineHeight: 1.05, 
+          marginBottom: '1.5rem', 
+          textTransform: 'none',
+          fontFamily: 'var(--font-sans)',
+          fontWeight: 600
+        }}>
+          Continuity, <br/>
+          <span style={{ color: 'transparent', WebkitTextStroke: '1.5px var(--accent-alt)' }}>Decentralized.</span>
+        </h1>
+
+        <p className="hero-reveal" style={{ 
+          fontSize: 'clamp(1.1rem, 3vw, 1.35rem)', 
+          color: 'var(--fg-dim)', 
+          maxWidth: '650px', 
+          margin: '0 auto 3rem',
+          lineHeight: 1.6
+        }}>
+          Seamlessly sync your clipboard, transfer massive files, and share links across macOS, Windows, Linux, and Android. <strong>Zero cloud servers. Zero data collection.</strong>
+        </p>
+
+        <div className="hero-reveal hero-buttons" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', justifyContent: 'center' }}>
+          <a href="https://github.com/ChinmayyK/cliprelay/releases" className="button-primary" style={{ padding: '1rem 2.5rem', fontSize: '1rem', letterSpacing: '0.1em' }}>DOWNLOAD BUNDLE</a>
+          <a href="https://github.com/ChinmayyK/cliprelay" className="button-secondary" style={{ padding: '1rem 2.5rem', fontSize: '1rem', border: '1px solid var(--border)', color: 'var(--fg)', textDecoration: 'none', fontFamily: 'var(--font-mono)', textTransform: 'uppercase', letterSpacing: '0.1em', transition: 'all 0.2s', background: 'rgba(0,0,0,0.2)' }}>INSPECT SOURCE</a>
+        </div>
+        
+        <div className="hero-reveal" style={{ marginTop: '3rem', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--fg-dim)' }}>
+          <span style={{ opacity: 0.5 }}>CURRENT BUILD:</span> <span style={{ color: 'var(--accent)' }}>v1.0.0-BETA</span> <span style={{ margin: '0 0.5rem', opacity: 0.3 }}>|</span> <span style={{ opacity: 0.5 }}>CORE:</span> <span style={{ color: 'var(--accent-alt)' }}>RUST (TOKIO)</span>
+        </div>
+
       </div>
     </section>
   );

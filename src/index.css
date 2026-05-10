@@ -172,6 +172,12 @@ button:hover {
   color: var(--accent) !important;
 }
 
+.button-secondary:hover {
+  background-color: rgba(56, 189, 248, 0.1) !important;
+  border-color: var(--accent-alt) !important;
+  color: var(--accent-alt) !important;
+}
+
 .terminal {
   background-color: var(--bg-surface);
   border: 1px solid var(--border);
