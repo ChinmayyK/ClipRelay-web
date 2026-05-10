@@ -16,18 +16,34 @@ export function Hero() {
       delay: 0.2
     });
 
-    // Orbiting nodes animation
-    gsap.to('.orbit-node', {
+    // Reveal terminal card
+    gsap.from('.hero-terminal-card', {
+      opacity: 0,
+      y: 60,
+      rotationX: 10,
+      transformPerspective: 1000,
+      duration: 1.5,
+      delay: 0.8,
+      ease: 'power3.out'
+    });
+
+    // Orbiting rings animation (rotating the entire container is perfectly responsive)
+    gsap.to('.orbit-ring-1', {
       rotation: 360,
-      transformOrigin: "center 200px",
-      duration: 20,
+      duration: 25,
       repeat: -1,
       ease: 'linear'
     });
     
-    gsap.to('.orbit-node-reverse', {
+    gsap.to('.orbit-ring-2', {
       rotation: -360,
-      transformOrigin: "center 140px",
+      duration: 35,
+      repeat: -1,
+      ease: 'linear'
+    });
+
+    gsap.to('.orbit-ring-3', {
+      rotation: 360,
       duration: 15,
       repeat: -1,
       ease: 'linear'
@@ -47,14 +63,26 @@ export function Hero() {
     <section ref={container} className="section" style={{ borderBottom: '1px dashed var(--border)', minHeight: 'calc(100vh - 85px)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', position: 'relative', overflow: 'hidden', padding: '0' }}>
       
       {/* Background Graphic */}
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '100vw', height: '100vw', maxWidth: '800px', maxHeight: '800px', pointerEvents: 'none', opacity: 0.1, zIndex: 0 }}>
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '100%', height: '100%', border: '1px solid var(--accent-alt)', borderRadius: '50%' }}></div>
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '70%', height: '70%', border: '1px dashed var(--accent)', borderRadius: '50%' }}></div>
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '40%', height: '40%', border: '1px solid var(--fg)', borderRadius: '50%' }}></div>
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '100vw', height: '100vw', maxWidth: '1000px', maxHeight: '1000px', pointerEvents: 'none', zIndex: 0 }}>
+        
+        {/* Core Glow */}
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '50%', height: '50%', background: 'radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 60%)', filter: 'blur(30px)' }}></div>
+        
+        {/* Radar Rings */}
+        <div style={{ position: 'absolute', top: '10%', left: '10%', width: '80%', height: '80%', border: '1px solid rgba(56, 189, 248, 0.1)', borderRadius: '50%' }}></div>
+        <div style={{ position: 'absolute', top: '25%', left: '25%', width: '50%', height: '50%', border: '1px dashed rgba(249, 115, 22, 0.2)', borderRadius: '50%' }}></div>
+        <div style={{ position: 'absolute', top: '38%', left: '38%', width: '24%', height: '24%', border: '1px dotted rgba(226, 232, 240, 0.2)', borderRadius: '50%' }}></div>
         
         {/* Orbiting Elements */}
-        <div className="orbit-node" style={{ position: 'absolute', top: 'calc(50% - 200px)', left: 'calc(50% - 6px)', width: '12px', height: '12px', background: 'var(--accent-alt)', borderRadius: '50%', boxShadow: '0 0 20px var(--accent-alt)' }}></div>
-        <div className="orbit-node-reverse" style={{ position: 'absolute', top: 'calc(50% - 140px)', left: 'calc(50% - 6px)', width: '12px', height: '12px', background: 'var(--accent)', borderRadius: '50%', boxShadow: '0 0 20px var(--accent)' }}></div>
+        <div className="orbit-ring-1" style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%' }}>
+          <div style={{ position: 'absolute', top: '10%', left: 'calc(50% - 6px)', transform: 'translateY(-50%)', width: '12px', height: '12px', background: 'var(--accent-alt)', borderRadius: '50%', boxShadow: '0 0 20px var(--accent-alt)' }}></div>
+        </div>
+        <div className="orbit-ring-2" style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%' }}>
+          <div style={{ position: 'absolute', top: '25%', left: 'calc(50% - 6px)', transform: 'translateY(-50%)', width: '12px', height: '12px', background: 'var(--accent)', borderRadius: '50%', boxShadow: '0 0 20px var(--accent)' }}></div>
+        </div>
+        <div className="orbit-ring-3" style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%' }}>
+          <div style={{ position: 'absolute', top: '38%', left: 'calc(50% - 4px)', transform: 'translateY(-50%)', width: '8px', height: '8px', background: 'var(--fg)', borderRadius: '50%', boxShadow: '0 0 15px var(--fg)' }}></div>
+        </div>
       </div>
 
       <div className="container" style={{ position: 'relative', zIndex: 10, maxWidth: '900px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -74,10 +102,11 @@ export function Hero() {
           marginBottom: '1.5rem', 
           textTransform: 'none',
           fontFamily: 'var(--font-sans)',
-          fontWeight: 600
+          fontWeight: 600,
+          textShadow: '0 0 40px rgba(56, 189, 248, 0.2)'
         }}>
           Continuity, <br/>
-          <span style={{ color: 'transparent', WebkitTextStroke: '1.5px var(--accent-alt)' }}>Decentralized.</span>
+          <span className="glitch" data-text="Decentralized." style={{ color: 'transparent', WebkitTextStroke: '1.5px var(--accent-alt)' }}>Decentralized.</span>
         </h1>
 
         <p className="hero-reveal" style={{ 
@@ -95,8 +124,24 @@ export function Hero() {
           <a href="https://github.com/ChinmayyK/cliprelay" className="button-secondary" style={{ padding: '1rem 2.5rem', fontSize: '1rem', border: '1px solid var(--border)', color: 'var(--fg)', textDecoration: 'none', fontFamily: 'var(--font-mono)', textTransform: 'uppercase', letterSpacing: '0.1em', transition: 'all 0.2s', background: 'rgba(0,0,0,0.2)' }}>INSPECT SOURCE</a>
         </div>
         
-        <div className="hero-reveal" style={{ marginTop: '3rem', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--fg-dim)' }}>
+        <div className="hero-reveal" style={{ marginTop: '2rem', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--fg-dim)' }}>
           <span style={{ opacity: 0.5 }}>CURRENT BUILD:</span> <span style={{ color: 'var(--accent)' }}>v1.0.0-BETA</span> <span style={{ margin: '0 0.5rem', opacity: 0.3 }}>|</span> <span style={{ opacity: 0.5 }}>CORE:</span> <span style={{ color: 'var(--accent-alt)' }}>RUST (TOKIO)</span>
+        </div>
+
+        {/* Glassmorphic Terminal Window */}
+        <div className="hero-terminal-card" style={{ marginTop: '3rem', width: '100%', maxWidth: '700px', background: 'rgba(16, 29, 53, 0.4)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', border: '1px solid rgba(56, 189, 248, 0.2)', borderRadius: '12px', padding: '1.5rem', textAlign: 'left', boxShadow: '0 20px 40px rgba(0,0,0,0.4)', position: 'relative' }}>
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '1.25rem' }}>
+            <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'rgba(255, 255, 255, 0.15)' }}></div>
+            <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'rgba(255, 255, 255, 0.15)' }}></div>
+            <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'rgba(255, 255, 255, 0.15)' }}></div>
+          </div>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.75rem, 3vw, 0.9rem)', color: 'var(--fg-dim)', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            <div><span style={{ color: 'var(--accent)' }}>❯</span> cliprelay daemon start --mesh</div>
+            <div>[SYS] Core engine online. Initializing mDNS discovery...</div>
+            <div>[P2P] Discovered 3 local nodes <span style={{ color: 'var(--fg)', opacity: 0.6 }}>(Win11-Desktop, Pixel-7, Mac-Studio)</span></div>
+            <div>[SEC] Handshake complete. Establishing X25519 tunnel... <span style={{ color: 'var(--accent-alt)' }}>[OK]</span></div>
+            <div style={{ color: 'var(--fg)' }}>[ACT] Mesh synchronized. Listening for events.<span className="cursor-blink"></span></div>
+          </div>
         </div>
 
       </div>
