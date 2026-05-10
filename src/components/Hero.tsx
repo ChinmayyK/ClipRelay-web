@@ -64,7 +64,7 @@ export function Hero() {
 
           <div className="hero-visual" style={{ position: 'relative', transformStyle: 'preserve-3d' }}>
             <div className="terminal">
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <div className="t-lines" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 <div className="t-line"><span style={{ color: 'var(--accent)' }}>&gt;</span> cliprelay daemon start</div>
                 <div className="t-line" style={{ color: 'var(--fg-dim)' }}>[SYS_INIT] Core engine online (Rust 1.80)</div>
                 <div className="t-line" style={{ color: 'var(--fg-dim)' }}>[NET_BIND] Listening on 0.0.0.0:8080</div>

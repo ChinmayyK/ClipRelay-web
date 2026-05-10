@@ -364,9 +364,10 @@ nav {
   
   /* Typography */
   h1 {
-    font-size: clamp(2rem, 8vw, 3.5rem);
+    font-size: clamp(2rem, 8vw, 3rem);
     word-wrap: break-word;
     letter-spacing: 0.02em;
+    margin-bottom: 0.5rem;
   }
   
   h2 {
@@ -379,7 +380,11 @@ nav {
   
   /* Layout Spacing */
   .section {
-    padding: 3.5rem 0;
+    padding: 2rem 0;
+  }
+  
+  .label {
+    margin-bottom: 0.5rem;
   }
   
   .container {
@@ -432,11 +437,16 @@ nav {
   
   .hero-visual {
     transform: none !important; /* Disable 3D on mobile for better fit */
-    margin-top: 1.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  .t-lines {
+    gap: 0.25rem !important;
   }
   
   .hero-content p {
-    font-size: clamp(1rem, 4.5vw, 1.25rem) !important;
+    font-size: clamp(0.9rem, 4vw, 1.1rem) !important;
+    margin-bottom: 1rem !important;
   }
   
   .diagnostic-panel {
@@ -444,7 +454,7 @@ nav {
     right: 0 !important;
     bottom: 0 !important;
     left: 0 !important;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     justify-content: space-between;
     transform: none !important;
     width: 100%;
