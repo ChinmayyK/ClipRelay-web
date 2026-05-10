@@ -133,37 +133,39 @@ export function Hero() {
         </div>
 
         <h1 className="hero-reveal" style={{ 
-          fontSize: 'clamp(3.5rem, 10vw, 6.5rem)', 
+          fontSize: 'clamp(2.5rem, 8vw, 6.5rem)', 
           color: 'var(--fg)', 
           letterSpacing: '-0.03em', 
-          lineHeight: 1.05, 
+          lineHeight: 1.1, 
           marginBottom: '1.5rem', 
           textTransform: 'none',
           fontFamily: 'var(--font-sans)',
           fontWeight: 600,
-          textShadow: '0 0 40px color-mix(in srgb, var(--accent-alt) 20%, transparent)'
+          textShadow: '0 0 40px color-mix(in srgb, var(--accent-alt) 20%, transparent)',
+          wordBreak: 'break-word',
+          hyphens: 'auto'
         }}>
           Continuity, <br/>
           <span className="glitch" data-text="Decentralized." style={{ color: 'transparent', WebkitTextStroke: '1.5px var(--accent-alt)' }}>Decentralized.</span>
         </h1>
 
         <p className="hero-reveal" style={{ 
-          fontSize: 'clamp(1.1rem, 3vw, 1.35rem)', 
+          fontSize: 'clamp(1rem, 3.5vw, 1.35rem)', 
           color: 'var(--fg-dim)', 
           maxWidth: '650px', 
-          margin: '0 auto 3rem',
+          margin: '0 auto 2rem',
           lineHeight: 1.6
         }}>
           Seamlessly sync your clipboard, transfer massive files, and share links across macOS, Windows, Linux, and Android. <strong>Zero cloud servers. Zero data collection.</strong>
         </p>
 
-        <div className="hero-reveal hero-buttons" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', justifyContent: 'center' }}>
-          <a href="https://github.com/ChinmayyK/cliprelay/releases" className="button-primary" style={{ padding: '1rem 2.5rem', fontSize: '1rem', letterSpacing: '0.1em' }}>DOWNLOAD BUNDLE</a>
-          <a href="https://github.com/ChinmayyK/cliprelay" className="button-secondary" style={{ padding: '1rem 2.5rem', fontSize: '1rem', border: '1px solid var(--border)', color: 'var(--fg)', textDecoration: 'none', fontFamily: 'var(--font-mono)', textTransform: 'uppercase', letterSpacing: '0.1em', transition: 'all 0.2s', background: 'color-mix(in srgb, var(--fg) 5%, transparent)' }}>INSPECT SOURCE</a>
+        <div className="hero-reveal hero-buttons" style={{ display: 'flex', gap: '1rem', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap', width: '100%' }}>
+          <a href="https://github.com/ChinmayyK/cliprelay/releases" className="button-primary" style={{ padding: '1rem 2rem', fontSize: 'clamp(0.85rem, 3vw, 1rem)', letterSpacing: '0.1em', flex: '1 1 auto', minWidth: '240px' }}>DOWNLOAD BUNDLE</a>
+          <a href="https://github.com/ChinmayyK/cliprelay" className="button-secondary" style={{ padding: '1rem 2rem', fontSize: 'clamp(0.85rem, 3vw, 1rem)', border: '1px solid var(--border)', color: 'var(--fg)', textDecoration: 'none', fontFamily: 'var(--font-mono)', textTransform: 'uppercase', letterSpacing: '0.1em', transition: 'all 0.2s', background: 'color-mix(in srgb, var(--fg) 5%, transparent)', flex: '1 1 auto', minWidth: '240px' }}>INSPECT SOURCE</a>
         </div>
         
-        <div className="hero-reveal" style={{ marginTop: '2rem', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--fg-dim)' }}>
-          <span style={{ opacity: 0.5 }}>CURRENT BUILD:</span> <span style={{ color: 'var(--accent)' }}>v1.0.0-BETA</span> <span style={{ margin: '0 0.5rem', opacity: 0.3 }}>|</span> <span style={{ opacity: 0.5 }}>CORE:</span> <span style={{ color: 'var(--accent-alt)' }}>RUST (TOKIO)</span>
+        <div className="hero-reveal" style={{ marginTop: '2rem', fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.65rem, 2vw, 0.8rem)', color: 'var(--fg-dim)', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.5rem' }}>
+          <span style={{ opacity: 0.5 }}>CURRENT BUILD:</span> <span style={{ color: 'var(--accent)' }}>v1.0.0-BETA</span> <span style={{ opacity: 0.3, display: 'none' }}>|</span> <span style={{ opacity: 0.5 }}>CORE:</span> <span style={{ color: 'var(--accent-alt)' }}>RUST (TOKIO)</span>
         </div>
 
         {/* Glassmorphic Terminal Window */}
@@ -173,12 +175,12 @@ export function Hero() {
             <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'color-mix(in srgb, var(--fg) 15%, transparent)' }}></div>
             <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'color-mix(in srgb, var(--fg) 15%, transparent)' }}></div>
           </div>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.75rem, 3vw, 0.9rem)', color: 'var(--fg-dim)', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-            <div><span style={{ color: 'var(--accent)' }}>❯</span> cliprelay daemon start --mesh</div>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.65rem, 3vw, 0.85rem)', color: 'var(--fg-dim)', display: 'flex', flexDirection: 'column', gap: '0.6rem', wordBreak: 'break-all' }}>
+            <div><span style={{ color: 'var(--accent)' }}>❯</span> cliprelay daemon start</div>
             <div>[SYS] Core engine online. Initializing mDNS discovery...</div>
-            <div>[P2P] Discovered 3 local nodes <span style={{ color: 'var(--fg)', opacity: 0.6 }}>(Win11-Desktop, Pixel-7, Mac-Studio)</span></div>
+            <div>[P2P] Discovered 3 local nodes</div>
             <div>[SEC] Handshake complete. Establishing X25519 tunnel... <span style={{ color: 'var(--accent-alt)' }}>[OK]</span></div>
-            <div style={{ color: 'var(--fg)' }}>[ACT] Mesh synchronized. Listening for events.<span className="cursor-blink"></span></div>
+            <div style={{ color: 'var(--fg)' }}>[ACT] Mesh synchronized.<span className="cursor-blink"></span></div>
           </div>
         </div>
 
