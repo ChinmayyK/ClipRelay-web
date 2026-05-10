@@ -37,10 +37,10 @@ export function Philosophy() {
         <h2 className="phil-header">Architectural Intent</h2>
         
         <div className="schematic-card phil-content" style={{ maxWidth: '800px' }}>
-          <p style={{ fontSize: '1.125rem', lineHeight: 1.8, marginBottom: '2rem', color: 'var(--fg)' }}>
+          <p style={{ fontSize: 'clamp(1rem, 4vw, 1.125rem)', lineHeight: 1.8, marginBottom: '2rem', color: 'var(--fg)' }}>
             Most modern continuity systems rely heavily on ecosystem lock-in, proprietary account dependencies, and cloud-based routing. The result is a telemetry-heavy, black-box architecture where users inherently lose ownership, control, and local autonomy.
           </p>
-          <p style={{ fontSize: '1.125rem', lineHeight: 1.8, margin: 0, color: 'var(--fg)' }}>
+          <p style={{ fontSize: 'clamp(1rem, 4vw, 1.125rem)', lineHeight: 1.8, margin: 0, color: 'var(--fg)' }}>
             ClipRelay bypasses this entirely. Utilizing a high-performance Rust core, data never leaves your local network. It works natively across platforms without enforcing a corporate ecosystem, and employs an activity-centric workflow to protect you from silent remote overwrites.
           </p>
         </div>

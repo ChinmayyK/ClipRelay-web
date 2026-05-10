@@ -148,7 +148,7 @@ button:hover {
 .section {
   padding: 6rem 0;
   border-bottom: 1px dashed var(--border);
-  background-color: rgba(var(--bg), 0.8);
+  background-color: color-mix(in srgb, var(--bg) 80%, transparent);
 }
 
 /* Components */
@@ -193,6 +193,11 @@ button:hover {
   padding: 0 0.5rem;
   font-size: 0.7rem;
   color: var(--accent-alt);
+}
+
+.t-line {
+  word-break: break-all; /* Ensure terminal commands never break layout */
+  overflow-wrap: anywhere;
 }
 
 .schematic-card {
@@ -251,7 +256,7 @@ button:hover {
 
 .nav-link {
   color: var(--fg);
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 3vw, 0.9rem);
   font-family: var(--font-mono);
   text-decoration: none;
   transition: color 0.2s;
@@ -339,7 +344,9 @@ td {
 nav {
   padding: 1.5rem 0;
   border-bottom: 1px solid var(--border);
-  background-color: var(--bg);
+  background-color: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   position: sticky;
   top: 0;
   z-index: 100;
