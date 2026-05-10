@@ -409,6 +409,16 @@ nav {
     margin-bottom: 0;
   }
   
+  .comp-desktop {
+    display: none !important;
+  }
+  
+  .comp-mobile {
+    display: flex !important;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
   /* Schematic cards & Terminal */
   .schematic-card {
     padding: 1.25rem;
@@ -480,5 +490,13 @@ nav {
   display: flex;
   gap: 2rem;
   align-items: center;
+}
+
+.comp-desktop {
+  display: block;
+}
+
+.comp-mobile {
+  display: none;
 }
 

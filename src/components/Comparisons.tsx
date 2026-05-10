@@ -79,7 +79,8 @@ export function Comparisons() {
         <span className="label comp-header">MARKET_ANALYSIS</span>
         <h2 className="comp-header">Competitive Matrix</h2>
 
-        <div className="comp-table table-responsive" style={{ background: 'var(--bg-surface)' }}>
+        {/* Desktop Table */}
+        <div className="comp-table comp-desktop table-responsive" style={{ background: 'var(--bg-surface)' }}>
           <table style={{ minWidth: '900px' }}>
             <thead>
               <tr>
@@ -104,6 +105,40 @@ export function Comparisons() {
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile Stacked Cards */}
+        <div className="comp-table comp-mobile">
+          {competitors.map((c, i) => (
+            <div key={i} className="schematic-card">
+              <h3 style={{ borderBottom: '1px solid var(--border)', paddingBottom: '0.75rem', marginBottom: '1rem', color: 'var(--fg)', fontSize: '1.1rem' }}>
+                {c.feature}
+              </h3>
+              
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem', fontSize: '0.9rem' }}>
+                <div style={{ gridColumn: '1 / -1', background: 'rgba(56, 189, 248, 0.05)', padding: '0.75rem', border: '1px solid rgba(56, 189, 248, 0.2)' }}>
+                  <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)', fontSize: '0.7rem', display: 'block', marginBottom: '0.25rem', letterSpacing: '0.05em' }}>CLIPRELAY</span>
+                  <strong style={{ color: 'var(--accent-alt)' }}>{c.cliprelay}</strong>
+                </div>
+                <div>
+                  <span style={{ color: 'var(--fg-dim)', fontFamily: 'var(--font-mono)', fontSize: '0.65rem', display: 'block', marginBottom: '0.25rem', letterSpacing: '0.05em' }}>APPLE</span>
+                  <span>{c.apple}</span>
+                </div>
+                <div>
+                  <span style={{ color: 'var(--fg-dim)', fontFamily: 'var(--font-mono)', fontSize: '0.65rem', display: 'block', marginBottom: '0.25rem', letterSpacing: '0.05em' }}>WINDOWS LINK</span>
+                  <span>{c.windows}</span>
+                </div>
+                <div>
+                  <span style={{ color: 'var(--fg-dim)', fontFamily: 'var(--font-mono)', fontSize: '0.65rem', display: 'block', marginBottom: '0.25rem', letterSpacing: '0.05em' }}>KDE CONNECT</span>
+                  <span>{c.kde}</span>
+                </div>
+                <div>
+                  <span style={{ color: 'var(--fg-dim)', fontFamily: 'var(--font-mono)', fontSize: '0.65rem', display: 'block', marginBottom: '0.25rem', letterSpacing: '0.05em' }}>O+ CONNECT</span>
+                  <span>{c.oplus}</span>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
