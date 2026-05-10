@@ -16,6 +16,32 @@ export function Hero() {
       delay: 0.2
     });
 
+    // Mouse Parallax effect
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!container.current) return;
+      const { clientX, clientY } = e;
+      const xPos = (clientX / window.innerWidth - 0.5) * 20;
+      const yPos = (clientY / window.innerHeight - 0.5) * 20;
+      
+      gsap.to('.parallax-bg', {
+        x: xPos * 2,
+        y: yPos * 2,
+        rotationX: -yPos * 0.5,
+        rotationY: xPos * 0.5,
+        ease: 'power2.out',
+        duration: 1
+      });
+      
+      gsap.to('.parallax-fg', {
+        x: -xPos,
+        y: -yPos,
+        ease: 'power2.out',
+        duration: 1
+      });
+    };
+    
+    window.addEventListener('mousemove', handleMouseMove);
+
     // Reveal terminal card
     gsap.from('.hero-terminal-card', {
       opacity: 0,
@@ -57,35 +83,47 @@ export function Hero() {
       yoyo: true,
       ease: 'power1.inOut'
     });
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, { scope: container });
 
   return (
-    <section ref={container} className="section" style={{ borderBottom: '1px dashed var(--border)', minHeight: 'calc(100vh - 85px)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', position: 'relative', overflow: 'hidden', padding: '0' }}>
+    <section ref={container} className="section" style={{ borderBottom: '1px dashed var(--border)', minHeight: 'calc(100vh - 85px)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', position: 'relative', overflow: 'hidden', padding: '0', perspective: '1000px' }}>
       
       {/* Background Graphic */}
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '100vw', height: '100vw', maxWidth: '1000px', maxHeight: '1000px', pointerEvents: 'none', zIndex: 0 }}>
+      <div className="parallax-bg" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '100vw', height: '100vw', maxWidth: '1000px', maxHeight: '1000px', pointerEvents: 'none', zIndex: 0, transformStyle: 'preserve-3d' }}>
         
         {/* Core Glow */}
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '50%', height: '50%', background: 'radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 60%)', filter: 'blur(30px)' }}></div>
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%) translateZ(-100px)', width: '50%', height: '50%', background: 'radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 60%)', filter: 'blur(30px)' }}></div>
         
         {/* Radar Rings */}
-        <div style={{ position: 'absolute', top: '10%', left: '10%', width: '80%', height: '80%', border: '1px solid rgba(56, 189, 248, 0.1)', borderRadius: '50%' }}></div>
-        <div style={{ position: 'absolute', top: '25%', left: '25%', width: '50%', height: '50%', border: '1px dashed rgba(249, 115, 22, 0.2)', borderRadius: '50%' }}></div>
+        <div style={{ position: 'absolute', top: '10%', left: '10%', width: '80%', height: '80%', border: '1px solid rgba(56, 189, 248, 0.1)', borderRadius: '50%', transform: 'translateZ(-50px)' }}></div>
+        <div style={{ position: 'absolute', top: '25%', left: '25%', width: '50%', height: '50%', border: '1px dashed rgba(249, 115, 22, 0.2)', borderRadius: '50%', transform: 'translateZ(-25px)' }}></div>
         <div style={{ position: 'absolute', top: '38%', left: '38%', width: '24%', height: '24%', border: '1px dotted rgba(226, 232, 240, 0.2)', borderRadius: '50%' }}></div>
         
         {/* Orbiting Elements */}
-        <div className="orbit-ring-1" style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%' }}>
-          <div style={{ position: 'absolute', top: '10%', left: 'calc(50% - 6px)', transform: 'translateY(-50%)', width: '12px', height: '12px', background: 'var(--accent-alt)', borderRadius: '50%', boxShadow: '0 0 20px var(--accent-alt)' }}></div>
+        <div className="orbit-ring-1" style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', transformStyle: 'preserve-3d' }}>
+          <div style={{ position: 'absolute', top: '10%', left: 'calc(50% - 6px)', transform: 'translateY(-50%) translateZ(20px)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '12px', height: '12px', background: 'var(--accent-alt)', borderRadius: '50%', boxShadow: '0 0 20px var(--accent-alt)' }}></div>
+            <div style={{ background: 'rgba(16, 29, 53, 0.6)', backdropFilter: 'blur(4px)', border: '1px solid rgba(56, 189, 248, 0.3)', padding: '0.2rem 0.5rem', borderRadius: '4px', fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: 'var(--fg)', whiteSpace: 'nowrap' }}>MacBook Pro</div>
+          </div>
         </div>
-        <div className="orbit-ring-2" style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%' }}>
-          <div style={{ position: 'absolute', top: '25%', left: 'calc(50% - 6px)', transform: 'translateY(-50%)', width: '12px', height: '12px', background: 'var(--accent)', borderRadius: '50%', boxShadow: '0 0 20px var(--accent)' }}></div>
+        
+        <div className="orbit-ring-2" style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', transformStyle: 'preserve-3d' }}>
+          <div style={{ position: 'absolute', top: '25%', left: 'calc(50% - 6px)', transform: 'translateY(-50%) translateZ(40px)', display: 'flex', alignItems: 'center', gap: '8px', flexDirection: 'row-reverse' }}>
+            <div style={{ width: '12px', height: '12px', background: 'var(--accent)', borderRadius: '50%', boxShadow: '0 0 20px var(--accent)' }}></div>
+            <div style={{ background: 'rgba(16, 29, 53, 0.6)', backdropFilter: 'blur(4px)', border: '1px solid rgba(249, 115, 22, 0.3)', padding: '0.2rem 0.5rem', borderRadius: '4px', fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: 'var(--fg)', whiteSpace: 'nowrap' }}>Pixel 7</div>
+          </div>
         </div>
-        <div className="orbit-ring-3" style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%' }}>
-          <div style={{ position: 'absolute', top: '38%', left: 'calc(50% - 4px)', transform: 'translateY(-50%)', width: '8px', height: '8px', background: 'var(--fg)', borderRadius: '50%', boxShadow: '0 0 15px var(--fg)' }}></div>
+        
+        <div className="orbit-ring-3" style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', transformStyle: 'preserve-3d' }}>
+          <div style={{ position: 'absolute', top: '38%', left: 'calc(50% - 4px)', transform: 'translateY(-50%) translateZ(60px)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '8px', height: '8px', background: 'var(--fg)', borderRadius: '50%', boxShadow: '0 0 15px var(--fg)' }}></div>
+            <div style={{ background: 'rgba(16, 29, 53, 0.6)', backdropFilter: 'blur(4px)', border: '1px solid rgba(226, 232, 240, 0.2)', padding: '0.2rem 0.5rem', borderRadius: '4px', fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--fg)', whiteSpace: 'nowrap' }}>Win11 Desktop</div>
+          </div>
         </div>
       </div>
 
-      <div className="container" style={{ position: 'relative', zIndex: 10, maxWidth: '900px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div className="container parallax-fg" style={{ position: 'relative', zIndex: 10, maxWidth: '900px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         
         <div className="hero-reveal" style={{ display: 'inline-flex', alignItems: 'center', border: '1px solid rgba(56, 189, 248, 0.3)', padding: '0.35rem 1rem', borderRadius: '50px', marginBottom: '2rem', background: 'rgba(16, 29, 53, 0.8)', backdropFilter: 'blur(8px)' }}>
           <span className="status-led" style={{ display: 'inline-block', width: '8px', height: '8px', background: 'var(--accent-alt)', borderRadius: '50%', marginRight: '10px', boxShadow: '0 0 10px var(--accent-alt)' }}></span>
